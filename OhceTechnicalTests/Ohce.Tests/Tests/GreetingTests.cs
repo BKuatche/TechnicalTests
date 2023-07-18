@@ -22,7 +22,42 @@ namespace Ohce.Tests.Tests
         [InlineData("Jack", 6, "¡Buenos días Jack!")]
         [InlineData("Renie", 11, "¡Buenos días Renie!")]
         [InlineData("Ali", 8, "¡Buenos días Ali!")]
-        public void GivenMorningTime_WhenUserGreet_ThenCorrectGreetingFormat(string userName, int hour, string expectedGreetingFormat)
+        public void GivenMorning_WhenUserGreet_ThenCorrectGreetingFormat(string userName, int hour, string expectedGreetingFormat)
+        {
+            // Arrange
+            _greeter.Setup(s => s.GetHour()).Returns(hour);
+            var greeterInstance = new Greeter(_greeterFactory, _greeter.Object.GetHour());
+
+            //Action
+            var actualGreetingFormat = greeterInstance.GetGreetingFor(userName);
+
+            //assert
+            actualGreetingFormat.Should().Be(expectedGreetingFormat);
+        }
+
+        [Theory]
+        [InlineData("Kelly", 12, "¡Buenas tardes Kelly!")]
+        [InlineData("Sami", 14, "¡Buenas tardes Sami!")]
+        [InlineData("Eddie", 19, "¡Buenas tardes Eddie!")]
+        public void GivenAfternoon_WhenUserGreet_ThenCorrectGreetingFormat(string userName, int hour, string expectedGreetingFormat)
+        {
+            // Arrange
+            _greeter.Setup(s => s.GetHour()).Returns(hour);
+            var greeterInstance = new Greeter(_greeterFactory, _greeter.Object.GetHour());
+
+            //Action
+            var actualGreetingFormat = greeterInstance.GetGreetingFor(userName);
+
+            //assert
+            actualGreetingFormat.Should().Be(expectedGreetingFormat);
+        }
+
+
+        [Theory]
+        [InlineData("Luke", 20, "¡Buenas noches Luke!")]
+        [InlineData("Luke", 25, "¡Buenas noches Luke!")]
+        [InlineData("Luke", 5, "¡Buenas noches Luke!")]
+        public void GivenNight_WhenUserGreet_ThenCorrectGreetingFormat(string userName, int hour, string expectedGreetingFormat)
         {
             // Arrange
             _greeter.Setup(s => s.GetHour()).Returns(hour);
