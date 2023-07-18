@@ -4,22 +4,36 @@ namespace OhceApp.Adapters
 {
     public class Greeter : IGreeter
     {
-        private readonly IGreeterFactory _greeterFactory;
-        private readonly int _hour;
+        private IGreeterFactory _greeterFactory;
+        private int _hour;
+
         public Greeter(IGreeterFactory greeterFactory, int hour)
         {
             _greeterFactory = greeterFactory;
             _hour = hour;
         }
 
+
         public string GetGreetingFor(string userName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = _greeterFactory.At(GetHour(), userName);
+
+                Console.WriteLine(result);
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public int GetHour()
         {
-            throw new NotImplementedException();
+            return _hour;
         }
     }
 }
