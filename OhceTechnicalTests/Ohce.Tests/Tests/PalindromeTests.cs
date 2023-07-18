@@ -13,6 +13,22 @@ namespace Ohce.Tests.Tests
             _palindrome = new Mock<IPalindrome>();
         }
 
+        [Theory]
+        [InlineData(" ")]
+        public void GivenEmptyContent_WhenProcess_ReturnEmpty(string content)
+        {
+            // Arrage
+            _palindrome.Setup(s => s.Content()).Returns(content);
+            var palindrome = new Palindrome(_palindrome.Object.Content());
+
+
+            // Action
+            var actualContent = palindrome.Execute();
+
+            // assert
+            content.Should().Be(actualContent);
+        }
+
 
         [Theory]
         [InlineData("hola", "aloh")]
@@ -20,10 +36,11 @@ namespace Ohce.Tests.Tests
         {
             // Arrage
             _palindrome.Setup(s => s.Content()).Returns(content);
+            var palindrome = new Palindrome(_palindrome.Object.Content());
 
 
             // Action
-            var actualContent = _palindrome.Object.Execute();
+            var actualContent = palindrome.Execute();
 
             // assert
             actualContent.Should().Be(expectedResult);
@@ -35,10 +52,11 @@ namespace Ohce.Tests.Tests
         {
             // Arrage
             _palindrome.Setup(s => s.Content()).Returns(content);
+            var palindrome = new Palindrome(_palindrome.Object.Content());
 
 
             // Action
-            var actualContent = _palindrome.Object.Execute();
+            var actualContent = palindrome.Execute();
 
             // assert
             actualContent.Should().Be(expectedResult);
