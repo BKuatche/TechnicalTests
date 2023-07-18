@@ -41,5 +41,27 @@ namespace Ohce.Tests.Tests
             //Assert
             expectedResult.Should().Be(actualResult);
         }
+
+
+        [Theory]
+        [InlineData("oto", 17, "¡Buenas tardes oto!\r\noto\n¡Bonita palabra!\r\n", null)]
+        [InlineData("oto", 17, "¡Buenas tardes oto!\r\noto\n¡Bonita palabra!\r\nAdios oto\r\n", "Stop!")]
+        public void GivenTimePeriod_WhenReversesPhrasesWithPalindrome_ThenCorrectResultShoulbBeDisplayed(string userName, int hour, string expected, string stop)
+        {
+            //arrange
+            _greeter.Setup(s => s.GetHour()).Returns(hour);
+            _palindrome.Setup(s => s.Content()).Returns(userName);
+            var ohce = new OhceService(userName, _greeter.Object.GetHour());
+
+
+            // Act
+            Console.SetOut(_stringWriter);
+            ohce.RunApp(userName, stop);
+            var actualResult = _stringWriter.ToString();
+
+
+            //Assert
+            expected.Should().Be(actualResult);
+        }
     }
 }
