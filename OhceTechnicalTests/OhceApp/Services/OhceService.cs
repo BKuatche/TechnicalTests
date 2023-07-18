@@ -17,7 +17,37 @@ namespace OhceApp.Services
 
         public void RunApp(string userName, string? stop = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                GreetUser(userName);
+                ReversePhrases();
+                SayGoodByeToTheUser(userName, stop);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        private void GreetUser(string username)
+        {
+            _greeter.GetGreetingFor(username);
+        }
+
+        private void ReversePhrases()
+        {
+            var result = _palindrome.Execute();
+            Console.WriteLine(result);
+        }
+
+        private void SayGoodByeToTheUser(string userName, string? text)
+        {
+            if (!string.IsNullOrEmpty(text) && text.Equals("Stop!"))
+            {
+                Console.WriteLine($"Adios {userName}");
+            }
         }
     }
 }
