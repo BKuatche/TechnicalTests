@@ -54,9 +54,9 @@ namespace Ohce.Tests.Tests
 
 
         [Theory]
-        [InlineData("Luke", 20, "¡Buenas noches Luke!")]
-        [InlineData("Luke", 25, "¡Buenas noches Luke!")]
-        [InlineData("Luke", 5, "¡Buenas noches Luke!")]
+        [InlineData("Pedro", 20, "¡Buenas noches Pedro!")]
+        [InlineData("Reo", 25, "¡Buenas noches Reo!")]
+        [InlineData("Charlie", 5, "¡Buenas noches Charlie!")]
         public void GivenNight_WhenUserGreet_ThenCorrectGreetingFormat(string userName, int hour, string expectedGreetingFormat)
         {
             // Arrange

@@ -33,7 +33,8 @@ namespace OhceApp.Services
 
         private void GreetUser(string username)
         {
-            _greeter.GetGreetingFor(username);
+           var result = _greeter.GetGreetingFor(username);
+            Console.WriteLine(result);
         }
 
         private void ReversePhrases()

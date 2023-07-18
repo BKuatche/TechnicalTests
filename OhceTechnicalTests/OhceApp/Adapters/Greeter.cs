@@ -20,8 +20,6 @@ namespace OhceApp.Adapters
             {
                 var result = _greeterFactory.At(GetHour(), userName);
 
-                Console.WriteLine(result);
-
                 return result;
             }
             catch (Exception)
