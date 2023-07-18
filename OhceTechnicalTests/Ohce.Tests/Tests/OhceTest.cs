@@ -8,7 +8,6 @@ namespace Ohce.Tests.Tests
 {
     public class OhceTest
     {
-        private readonly IGreeterFactory _greeterFactory;
         private readonly Mock<IGreeter> _greeter;
         private Mock<IPalindrome> _palindrome;
         private StringWriter _stringWriter;
@@ -16,7 +15,6 @@ namespace Ohce.Tests.Tests
 
         public OhceTest()
         {
-            _greeterFactory = new GreeterFactory();
             _greeter = new Mock<IGreeter>();
             _palindrome = new Mock<IPalindrome>();
             _stringWriter = new StringWriter();
